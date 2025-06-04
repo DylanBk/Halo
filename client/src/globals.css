@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+@import './themes.css';
+
+@layer base {
+    * {
+        font-family: 'Geist';
+    }
+
+    *::-webkit-scrollbar {
+        width: 0.5rem;
+        border-radius: 1rem;
+        background: transparent;
+        display: none; /*? hidden or visible */
+    }
+    *::-webkit-scrollbar-thumb {
+        @apply rounded-2xl bg-surface-muted;
+    }
+
+    html, body {
+        height: 100%;
+        width: 100%;
+        @apply bg-bg;
+    }
+
+    a, button {
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Manrope';
+    }
+}
+
+@layer components {
+    .icon {
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+}
+
+@layer utilities {
+}
