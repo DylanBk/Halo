@@ -13,7 +13,8 @@
         display: none; /*? hidden or visible */
     }
     *::-webkit-scrollbar-thumb {
-        @apply rounded-2xl bg-surface-muted;
+        border-radius: 1rem;
+        @apply bg-surface-muted;
     }
 
     html, body {
@@ -25,14 +26,80 @@
     a, button {
         transition: all 0.3s;
         cursor: pointer;
+        outline: none;
+    }
+
+    a {
+        @apply text-marine;
+    }
+    a:hover {
+        @apply text-lichen;
+    }
+
+    button {
+        padding: 0.5rem 1rem;
+        border-radius: 6px !important;
     }
 
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Manrope';
     }
+
+    label {
+        font-size: 0.75rem;
+        @apply text-snow;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'] {
+        padding:  0.5rem 0.25rem;
+        @apply border border-surface-muted rounded-lg ;
+        @apply bg-surface focus:bg-surface-muted;
+        @apply text-smoke;
+        outline: none;
+    }
+
+    input:has(+ svg),
+    input:has(+ button svg) {
+        padding-right: 2.5rem !important;
+    }
+
+    /** This overrides the autofill styles */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+        -webkit-text-fill-color: var(--color-snow) !important;
+        transition: background-color 5000s ease-in-out 0s;
+    }
 }
 
 @layer components {
+    button.primary {
+        @apply bg-marine text-black;
+
+        &:hover,
+        &:focus {
+            @apply bg-steel text-marine;
+        }
+    }
+
+    button.secondary {
+        @apply bg-violet text-black;
+
+        &:hover,
+        &:focus {
+            @apply bg-steel text-violet;
+        }
+    }
+
+    a:has(.icon),
+    button:has(.icon) {
+        padding: 0;
+    }
+
     .icon {
         cursor: pointer;
         transition: all 0.2s;

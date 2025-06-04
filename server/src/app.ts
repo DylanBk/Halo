@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express from 'express';
+import session from 'express-session';
 
 import config from './config/config';
 import userRoutes from './routes/userRoutes';
@@ -8,11 +9,25 @@ import { errorHandler } from './middlewares/errorHandler';
 
 const app = express();
 
+
+// server middleware
+
 app.use(cors({
     credentials: true,
     origin: config.clientUrl
 }));
 app.use(express.json());
+app.use(session({
+    secret: config.sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1_800_000,
+        sameSite: true,
+        secure: config.nodeEnv === 'development' ? false : true,
+    }
+}));
 
 // route handlers
 app.use('/user', userRoutes)

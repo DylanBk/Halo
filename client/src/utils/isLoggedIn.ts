@@ -4,6 +4,8 @@ const isLoggedIn = async () => {
     });
     const res = await req.json();
 
+    console.log(res)
+
     return res.ok;
 };
 

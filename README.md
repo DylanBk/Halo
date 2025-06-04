@@ -50,6 +50,7 @@ Social Media
 - Express
 - Express Session
 - CORS
+- Bcrypt
 
 ### DataBase
 

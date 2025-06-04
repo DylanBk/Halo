@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import './Auth.module.css';
+import './Auth.css';
 
 import isLoggedIn from "../../../utils/isLoggedIn";
 
@@ -15,18 +15,18 @@ const Auth = () => {
     useEffect(() => {
 
         const authCheck = async () => {
-            if (await isLoggedIn) {
+            if (await isLoggedIn()) {
                 nav('/');
             };
         };
-        // authCheck();
+        authCheck();
 
         if (window.location.href.includes('login')) {
             setIsLogin(true);
         } else {
             setIsLogin(false);
         };
-    }, [nav])
+    }, [nav]);
 
     return (
         <>

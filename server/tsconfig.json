@@ -7,6 +7,6 @@
         "types": ["node"],
         "esModuleInterop": true
     },
-    "include": ["src/**/*.ts", "src/server.ts"],
+    "include": ["src/**/*.ts", "src/server.ts", "index.d.ts"],
     "exclude": ["node_modules"]
 }
