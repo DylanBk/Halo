@@ -1,7 +1,7 @@
 # Halo
 
 **Links:** \
-[GitHub Repo](https://github.com/DylanBk.com/Halo)
+[GitHub Repo](https://github.com/DylanBk/Halo)
 
 **Team Members:** \
 [DylanBk](https://github.com/DylanBk)

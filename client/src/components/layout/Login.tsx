@@ -47,18 +47,6 @@ const Login = () => {
             className="auth-form"
             onSubmit={handleFormSubmit}>
             <h2>Welcome Back!</h2>
-
-            <div>
-                <label htmlFor="username">Create Your Username:</label>
-
-                <input
-                    name="username"
-                    type="text"
-                    placeholder="Your username..."
-                    required
-                />
-            </div>
-
             <div>
                 <label htmlFor="email">Enter your email address:</label>
 
@@ -71,7 +59,7 @@ const Login = () => {
             </div>
 
             <div>
-                <label htmlFor="password">Create a password:</label>
+                <label htmlFor="password">Enter your password:</label>
 
                 <div className="!w-full relative flex flex-row">
                     <input
@@ -86,13 +74,13 @@ const Login = () => {
                     {pwVisible ? (
                         <EyeOff
                             onClick={handleTogglePw}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 stroke-snow hover:stroke-smoke icon"
+                            className="icon"
                             size={24}
                         />
                     ) : (
                         <Eye
                             onClick={handleTogglePw}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 stroke-snow hover:stroke-smoke icon"
+                            className="icon"
                             size={24}
                         />
                     )}

@@ -1,0 +1,253 @@
+@import '../../../globals.css';
+
+#settings-container {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    @apply border border-surface-muted;
+    border-radius: 1rem;
+    @apply bg-surface;
+    @apply text-snow;
+
+    section.settings {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem 1rem 1rem;
+
+        &:not(:first-of-type) {
+            margin-top: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+    }
+
+    section#profile {
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            padding: 0 1rem 1rem 1rem;
+            }
+
+        div div {
+            flex-direction: column;
+        }
+
+        div:has(#banner) {
+            position: relative;
+        }
+
+        #banner {
+            width: 100%;
+            border-radius: 1rem;
+
+            + button {
+                position: absolute;
+                right: 1rem;
+                bottom: 1rem;
+                padding: 0.5rem;
+            }
+        }
+
+        #avatar {
+            height: 10rem;
+            min-width: 10rem;
+            max-width: 10rem;
+            @apply border-4 border-surface-muted;
+            border-radius: 100%;
+        }
+
+        #avatar + button {
+            height: fit-content;
+            width: fit-content;
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            padding: 0.5rem;
+
+            &:hover svg {
+                @apply stroke-smoke;
+            }
+        }
+
+        .role {
+            height: fit-content;
+            width: fit-content !important;
+            min-width: 5rem;
+            padding: 0.5rem 1rem;
+            @apply rounded-md;
+            margin-top: 4rem;
+            text-align: center;
+            animation: gradient 6s ease infinite;
+        }
+
+        #role-owner {
+            @apply bg-gradient-to-r bg-linear-45 from-marine via-violet to-rose;
+            background-size: 400% 400%;
+            color: black;
+        }
+
+        #role-admin {
+            @apply bg-steel;
+            @apply text-rose;
+        }
+
+        #role-moderator {
+            @apply bg-bg;
+            @apply text-amber-500;
+        }
+
+        #role-user {
+            @apply bg-lichen;
+            @apply text-black;
+        }
+
+        #role-suspended {
+            @apply bg-amber-500;
+            color: black;
+        }
+
+        #role-banned {
+            @apply bg-rose;
+            color: black;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            &>* {
+                width: 100%;
+            }
+
+            input {
+                /* pointer-events: none; */
+            }
+
+            textarea {
+                min-height: 4rem;
+                height: 4rem;
+                max-height: 10rem;
+                resize: vertical;
+            }
+        }
+    }
+
+    section#account {
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                align-items: start;
+
+                button:has(svg) {
+                    transform: translateY(0.25rem);
+                }
+            }
+        }
+    }
+
+    section#preferences {
+        align-items: center;
+
+        h2 {
+            align-self: flex-start;
+        }
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: start;
+        }
+    }
+
+    section#privacy {
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            align-items: center;
+
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            div#connections {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                ul {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.75rem;
+                    padding: 0.5rem;
+                    @apply border border-surface-muted;
+                    @apply rounded-md;
+                
+                    li {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 1rem;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
+            }
+        }
+    }
+
+    section#security {
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+
+            section {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+            }
+        }
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

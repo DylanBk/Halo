@@ -7,6 +7,7 @@ const router = Router();
 router.post('/create', createUser);
 router.post('/get', getUser)
 router.post('/login', login);
+router.get('/me', getUser);
 
 
 // ! remove before deployment

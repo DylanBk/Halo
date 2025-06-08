@@ -2,7 +2,6 @@ export default interface User {
     id: number,
     username: string,
     email: string,
-    password: string,
     role: number,
     pfp: string | null,
     banner: string | null,
@@ -16,5 +15,6 @@ export default interface User {
     reposted_posts: number[],
     shared_posts: number[],
     saved_posts: number[],
-    created_at: string
-};
+    created_at: string,
+    roleBadge?: string // used in profile/settings page
+}

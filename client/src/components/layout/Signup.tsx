@@ -96,14 +96,14 @@ const Signup = () => {
 
                     {pwVisible ? (
                         <EyeOff
-                            className="absolute right-2 top-1/2 -translate-y-1/2 stroke-smoke hover:stroke-snow icon"
+                            className="icon"
                             size={24}
                             onClick={handleTogglePw}
                             aria-label="Hide Password"
                         />
                     ) : (
                         <Eye
-                            className="absolute right-2 top-1/2 -translate-y-1/2 stroke-smoke hover:stroke-snow icon"
+                            className="icon"
                             size={24}
                             onClick={handleTogglePw}
                             aria-label="Show Password"

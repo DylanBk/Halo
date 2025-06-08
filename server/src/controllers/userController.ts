@@ -88,16 +88,25 @@ export const getUser = async (
 ) => {
     try {
         const data = req.body;
-        console.log(data)
-
         let q: any;
 
-        if (data.id as number) {
-            q = await pool.query('SELECT * FROM users WHERE id = $1', [data.id]);
-        } else if (data.email as string) {
-            q = await pool.query('SELECT * FROM users WHERE email = $1', [data.email]);
+        if (data) {
+            if (data.id as number) {
+                q = await pool.query('SELECT * FROM users WHERE id = $1', [data.id]);
+            } else if (data.email as string) {
+                q = await pool.query('SELECT * FROM users WHERE email = $1', [data.email]);
+            } else if (data.username) {
+                q = await pool.query('SELECT * FROM users WHERE username = $1', [data.username]);
+            } else {
+                return res.status(400).json({
+                    ok: false,
+                    message: "Failed to fetch user",
+                    error: "No user identifier provided."
+                });
+            };
         } else {
-            q = await pool.query('SELECT * FROM users WHERE username = $1', [data.username]);
+            console.log('user requested own settings')
+            q = await pool.query('SELECT * FROM users WHERE id = $1', [req.session.user.id]);
         };
 
         if (q.rowCount > 0) {
@@ -130,7 +139,7 @@ export const getUser = async (
                 message: "User not found",
                 error: "No user found with the provided information."
             });
-        }
+        };
     } catch (e) {
         next(e);
     };
@@ -149,6 +158,7 @@ export const login = async (
         const check = await checkPw(data.password, q.rows[0].password);
 
         if (check) {
+            console.log('user logged in')
             req.session.user = {
                 id: q.rows[0].id,
                 username: q.rows[0].username,

@@ -23,6 +23,14 @@
         @apply bg-bg;
     }
 
+    main {
+        padding: 1rem;
+    }
+
+    hr {
+        @apply text-steel;
+    }
+
     a, button {
         transition: all 0.3s;
         cursor: pointer;
@@ -45,6 +53,23 @@
         font-family: 'Manrope';
     }
 
+    form {
+        width: fit-content;
+        position: relative;
+    }
+
+    div:has(> label + input),
+    div:has(> label + textarea),
+    div:has(> label + select) {
+        display: flex;
+        flex-direction: column;
+        gap: 0 !important;
+        
+        label {
+            align-self: flex-start;
+        }
+    }
+
     label {
         font-size: 0.75rem;
         @apply text-snow;
@@ -55,14 +80,9 @@
     input[type='password'] {
         padding:  0.5rem 0.25rem;
         @apply border border-surface-muted rounded-lg ;
-        @apply bg-surface focus:bg-surface-muted;
+        @apply bg-surface focus-visible:bg-surface-muted;
         @apply text-smoke;
         outline: none;
-    }
-
-    input:has(+ svg),
-    input:has(+ button svg) {
-        padding-right: 2.5rem !important;
     }
 
     /** This overrides the autofill styles */
@@ -74,6 +94,72 @@
         -webkit-text-fill-color: var(--color-snow) !important;
         transition: background-color 5000s ease-in-out 0s;
     }
+
+
+    /* button embedded inside input */
+
+    input:has(+ svg),
+    input:has(+ button svg) {
+        padding-right: 2.5rem !important;
+    }
+
+    input:has(+ button svg) + button,
+    input:has(+ svg) + svg {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    textarea {
+        padding: 0.5rem 0.25rem;
+        @apply border border-surface-muted rounded-lg;
+        @apply bg-surface focus-visible:bg-surface-muted;
+        @apply text-smoke;
+        outline: none;
+    }
+
+    select {
+        padding: 0.5rem 0.25rem;
+        @apply border border-surface-muted rounded-lg;
+        @apply bg-surface focus-visible:bg-surface-muted;
+        @apply text-smoke;
+        outline: none;
+        cursor: pointer;
+
+        option {
+            @apply bg-surface;
+            @apply text-smoke;
+        }
+    }
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+
+        legend {
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            @apply text-snow;
+        }
+
+        div:has(> input[type='radio'] + label) {
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: row !important;
+            align-items: center !important;
+
+            input[type='radio'] {
+                cursor: pointer;
+                scale: 1.25;
+            }
+
+            label {
+                font-size: 1rem;
+                @apply text-smoke;
+            }
+        }
+    }
 }
 
 @layer components {
@@ -81,28 +167,92 @@
         @apply bg-marine text-black;
 
         &:hover,
-        &:focus {
+        &:focus-visible {
             @apply bg-steel text-marine;
         }
     }
-
     button.secondary {
         @apply bg-violet text-black;
 
         &:hover,
-        &:focus {
+        &:focus-visible {
             @apply bg-steel text-violet;
+        }
+    }
+    button.danger {
+        @apply bg-rose text-black;
+
+        &:hover,
+        &:focus-visible {
+            @apply bg-steel text-rose;
         }
     }
 
     a:has(.icon),
     button:has(.icon) {
         padding: 0;
+
+        &:hover .icon,
+        &:focus-visible .icon {
+            @apply stroke-smoke;
+        }
     }
 
     .icon {
+        @apply stroke-snow;
         cursor: pointer;
         transition: all 0.2s;
+
+        &:hover,
+        &:focus-visible {
+            @apply stroke-smoke;
+        }
+    }
+
+    .toggle-container {
+        height: 2rem;
+        width: 4rem;
+        position: relative;
+        display: inline-block;
+
+        input[type='checkbox'] {
+            height: 2rem;
+            width: 4rem;
+            border-radius: calc(infinity * 1px);
+            cursor: pointer;
+
+            &:checked + .slider {
+                @apply bg-marine;
+
+                &:before {
+                    transform: translateX(2rem);
+                }
+            }
+        }
+
+        .slider {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: calc(infinity * 1px);
+            @apply bg-steel;
+            transition: all 0.3s;
+            pointer-events: none;
+
+            &:before {
+                height: 1.5rem;
+                width: 1.5rem;
+                position: absolute;
+                left: 0.25rem;
+                bottom: 0.25rem;
+                border-radius: 100%;
+                @apply bg-snow;
+                content: "";
+                transition: all 0.3s;
+            }
+        }
     }
 }
 

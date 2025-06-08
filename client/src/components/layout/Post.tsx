@@ -95,7 +95,7 @@ const Post = (props: PostProps) => {
             <form className='w-full flex flex-row' onSubmit={handleComment}>
                 <textarea
                     name="comment"
-                    className='min-h-8 max-h-44 w-full field-sizing-content p-0.5 rounded-l-lg border border-surface-muted focus:border-smoke outline-none'
+                    className='min-h-8 max-h-44 w-full field-sizing-content p-0.5 rounded-l-lg border border-surface-muted focus-visible:border-smoke outline-none'
                     placeholder='Type your comment...'
                     maxLength={400}
                     aria-label='Reply to this post'
